@@ -11,6 +11,9 @@ export async function middleware(request: NextRequest): Promise<NextResponse> {
   const role = token?.role as UserRole | undefined;
   const pathname = request.nextUrl.pathname;
 
+  console.log("Middleware token:", token);
+  console.log("Role:", token?.role);
+
   if (pathname.startsWith('/dashboard')) {
     if (!token) {
       const redirectUrl = new URL('/login', request.nextUrl);

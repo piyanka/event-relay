@@ -3,7 +3,7 @@
 import * as React from 'react';
 import type * as ReactTypes from 'react';
 import { signIn } from 'next-auth/react';
-import { useRouter, useSearchParams } from 'next/navigation';
+import { useSearchParams } from 'next/navigation';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
@@ -11,7 +11,6 @@ import { Label } from '@/components/ui/label';
 import { useToast } from '@/components/providers/toast-provider';
 
 export function LoginForm(): ReactTypes.JSX.Element {
-  const router = useRouter();
   const searchParams = useSearchParams();
   const { toast } = useToast();
   const [pending, setPending] = React.useState(false);
@@ -46,8 +45,7 @@ export function LoginForm(): ReactTypes.JSX.Element {
       variant: 'default',
     });
 
-    router.push(result?.url ?? searchParams.get('callbackUrl') ?? '/post-login');
-    router.refresh();
+    window.location.assign(result?.url ?? searchParams.get('callbackUrl') ?? '/post-login');
   }
 
   return (
