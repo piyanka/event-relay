@@ -1,6 +1,5 @@
 import type * as React from 'react';
 import Link from 'next/link';
-import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { PageShell } from '@/components/layout/page-shell';
 import { HeroPreview } from '@/components/home/hero-preview';
@@ -21,9 +20,16 @@ export default async function HomePage(): Promise<React.JSX.Element> {
               <Link href="/events">See events</Link>
             </Button>
             <Button asChild variant="outline" size="lg">
-            <Link href="/signup">Create host account</Link>
-          </Button>
+              <Link href="/signup">Create host account</Link>
+            </Button>
           </div>
+          <p className="mt-4 text-sm text-slate-500">
+            Want to browse public events first?{" "}
+            <Link href="/events" className="font-medium text-slate-900 underline underline-offset-4">
+              Open the event list
+            </Link>
+            .
+          </p>
         </div>
 
         <HeroPreview />

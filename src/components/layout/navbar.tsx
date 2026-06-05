@@ -52,6 +52,9 @@ export async function Navbar(): Promise<React.JSX.Element> {
         <div className="flex items-center gap-2 md:hidden">
           {session?.user ? (
             <>
+              <Button asChild variant="ghost" size="sm">
+                <Link href="/events">See events</Link>
+              </Button>
               <Button asChild variant="outline" size="sm">
                 <Link href={session.user.role === 'HOST' ? '/dashboard' : '/my-events'}>
                   {session.user.role === 'HOST' ? 'Dashboard' : 'My events'}
@@ -61,6 +64,9 @@ export async function Navbar(): Promise<React.JSX.Element> {
             </>
           ) : (
             <>
+              <Button asChild variant="ghost" size="sm">
+                <Link href="/events">See events</Link>
+              </Button>
               <Button asChild variant="ghost" size="sm">
                 <Link href="/login">Log in</Link>
               </Button>
