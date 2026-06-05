@@ -6,13 +6,11 @@ export async function middleware(request: NextRequest): Promise<NextResponse> {
   const token = await getToken({
     req: request,
     secret: process.env.AUTH_SECRET ?? process.env.NEXTAUTH_SECRET,
+    secureCookie: request.nextUrl.protocol === 'https:',
   });
 
   const role = token?.role as UserRole | undefined;
   const pathname = request.nextUrl.pathname;
-
-  console.log("Middleware token:", token);
-  console.log("Role:", token?.role);
 
   if (pathname.startsWith('/dashboard')) {
     if (!token) {
