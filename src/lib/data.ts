@@ -174,7 +174,7 @@ export async function getEventRegistrations(
   const registrations = (await RegistrationModel.find({ eventId })
     .populate('attendeeId', 'name email')
     .sort({ createdAt: -1 })
-    .lean()) as Array<{
+    .lean()) as unknown as Array<{
     _id: { toString(): string };
     attendeeId: { _id: { toString(): string }; name: string; email: string };
     createdAt: Date;
@@ -209,7 +209,7 @@ export async function getAttendeeDashboardData(attendeeId: string): Promise<{
   const registrations = (await RegistrationModel.find({ attendeeId })
     .populate('eventId', 'title date location slug')
     .sort({ createdAt: -1 })
-    .lean()) as Array<{
+    .lean()) as unknown as Array<{
     _id: { toString(): string };
     createdAt: Date;
     eventId: { _id: { toString(): string }; title: string; date: string; location: string; slug: string };

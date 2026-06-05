@@ -1,19 +1,8 @@
 import type { Metadata } from 'next';
 import type * as React from 'react';
-import { Manrope, Space_Grotesk } from 'next/font/google';
 import { Navbar } from '@/components/layout/navbar';
 import { ToastProvider } from '@/components/providers/toast-provider';
 import './globals.css';
-
-const headingFont = Space_Grotesk({
-  subsets: ['latin'],
-  variable: '--font-heading',
-});
-
-const bodyFont = Manrope({
-  subsets: ['latin'],
-  variable: '--font-body',
-});
 
 export const metadata: Metadata = {
   title: 'Event Relay',
@@ -26,7 +15,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>): React.JSX.Element {
   return (
-    <html lang="en" className={`${headingFont.variable} ${bodyFont.variable}`}>
+    <html lang="en">
       <body>
         <ToastProvider>
           <div className="relative min-h-screen overflow-hidden">

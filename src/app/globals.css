@@ -3,6 +3,8 @@
 :root {
   --background: 248 250 252;
   --foreground: 15 23 42;
+  --font-heading: 'Trebuchet MS', 'Segoe UI', ui-sans-serif, system-ui, sans-serif;
+  --font-body: 'Inter', 'Segoe UI', ui-sans-serif, system-ui, sans-serif;
 }
 
 * {
