@@ -2,6 +2,13 @@
 
 An event platform for hosts and attendees. Hosts can create and manage events, while attendees can browse public events, register, and manage their own registrations.
 
+## FOR HOST 
+<img width="2928" height="1674" alt="image" src="https://github.com/user-attachments/assets/a35613b9-ccf8-40e5-95e7-13dc2a1ae630" />
+
+##FOR ATTENDEE
+<img width="2934" height="1678" alt="image" src="https://github.com/user-attachments/assets/741506d2-8637-469f-99e2-ec7435bf9596" />
+
+
 ## Implementation Summary
 
 - Built with Next.js 15 App Router, React 19, and TypeScript.
