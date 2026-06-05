@@ -1,8 +1,8 @@
 import type * as React from "react";
 import Link from "next/link";
 import { redirect } from "next/navigation";
-import { auth } from "@/auth";
 import { getHostDashboardData } from "@/lib/data";
+import { safeAuth } from "@/lib/safe-auth";
 import { formatDate, formatTime } from "@/lib/format";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -20,8 +20,10 @@ import { EventManagementActions } from "@/components/event/event-management-acti
 import { ShareLinkButton } from "@/components/event/share-link-button";
 import { CalendarDays, MapPin, Plus } from "lucide-react";
 
+export const dynamic = 'force-dynamic';
+
 export default async function DashboardPage(): Promise<React.JSX.Element> {
-  const session = await auth();
+  const session = await safeAuth();
   if (!session?.user || session.user.role !== "HOST") {
     redirect("/login");
   }

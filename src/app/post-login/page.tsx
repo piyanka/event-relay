@@ -1,8 +1,10 @@
 import { redirect } from 'next/navigation';
-import { auth } from '@/auth';
+import { safeAuth } from '@/lib/safe-auth';
+
+export const dynamic = 'force-dynamic';
 
 export default async function PostLoginPage(): Promise<never> {
-  const session = await auth();
+  const session = await safeAuth();
 
   if (!session?.user) {
     redirect('/login');

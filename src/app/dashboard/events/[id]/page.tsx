@@ -1,9 +1,9 @@
 import type * as React from 'react';
 import Link from 'next/link';
 import { redirect, notFound } from 'next/navigation';
-import { auth } from '@/auth';
 import { getEventRegistrations } from '@/lib/data';
 import { getHostEventOrThrow } from '@/lib/guards';
+import { safeAuth } from '@/lib/safe-auth';
 import { formatDate, formatTime, formatDateTime } from '@/lib/format';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
@@ -14,6 +14,8 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@
 import { EmptyState } from '@/components/shared/empty-state';
 import { Search } from 'lucide-react';
 
+export const dynamic = 'force-dynamic';
+
 export default async function EventRegistrationsPage({
   params,
   searchParams,
@@ -21,7 +23,7 @@ export default async function EventRegistrationsPage({
   params: Promise<{ id: string }>;
   searchParams?: Promise<Record<string, string | string[] | undefined>>;
 }): Promise<React.JSX.Element> {
-  const session = await auth();
+  const session = await safeAuth();
   if (!session?.user || session.user.role !== 'HOST') {
     redirect('/login');
   }

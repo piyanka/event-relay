@@ -1,14 +1,14 @@
 import { Parser } from 'json2csv';
 import { NextResponse } from 'next/server';
-import { auth } from '@/auth';
 import { getEventRegistrations } from '@/lib/data';
 import { getHostEventOrThrow } from '@/lib/guards';
+import { safeAuth } from '@/lib/safe-auth';
 
 export async function GET(
   _request: Request,
   { params }: { params: Promise<{ id: string }> },
 ): Promise<Response> {
-  const session = await auth();
+  const session = await safeAuth();
   if (!session?.user || session.user.role !== 'HOST') {
     return NextResponse.json({ message: 'Unauthorized' }, { status: 401 });
   }

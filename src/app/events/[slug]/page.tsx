@@ -11,6 +11,8 @@ import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import { ShareLinkButton } from '@/components/event/share-link-button';
 
+export const dynamic = 'force-dynamic';
+
 export default async function EventPage({
   params,
 }: {

@@ -1,8 +1,8 @@
 import type * as React from 'react';
 import Link from 'next/link';
 import { redirect } from 'next/navigation';
-import { auth } from '@/auth';
 import { getAttendeeDashboardData } from '@/lib/data';
+import { safeAuth } from '@/lib/safe-auth';
 import { formatDate } from '@/lib/format';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
@@ -11,8 +11,10 @@ import { PageShell } from '@/components/layout/page-shell';
 import { EmptyState } from '@/components/shared/empty-state';
 import { CancelRegistrationButton } from '@/components/event/cancel-registration-button';
 
+export const dynamic = 'force-dynamic';
+
 export default async function MyEventsPage(): Promise<React.JSX.Element> {
-  const session = await auth();
+  const session = await safeAuth();
   if (!session?.user || session.user.role !== 'ATTENDEE') {
     redirect('/login');
   }

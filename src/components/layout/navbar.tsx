@@ -1,11 +1,11 @@
 import type * as React from 'react';
 import Link from 'next/link';
-import { auth } from '@/auth';
 import { Button } from '@/components/ui/button';
 import { UserMenu } from '@/components/layout/user-menu';
+import { safeAuth } from '@/lib/safe-auth';
 
 export async function Navbar(): Promise<React.JSX.Element> {
-  const session = await auth();
+  const session = await safeAuth();
 
   return (
     <header className="sticky top-0 z-40 border-b border-white/60 bg-white/80 backdrop-blur-xl">

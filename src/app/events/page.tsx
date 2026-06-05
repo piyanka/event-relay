@@ -9,6 +9,8 @@ import { EmptyState } from "@/components/shared/empty-state";
 import { PageShell } from "@/components/layout/page-shell";
 import { CalendarDays, MapPin } from "lucide-react";
 
+export const dynamic = 'force-dynamic';
+
 export default async function EventsPage(): Promise<React.JSX.Element> {
   const events = await getPublicEvents();
 

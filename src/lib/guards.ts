@@ -1,7 +1,7 @@
-import { auth } from '@/auth';
 import { connectToDatabase } from '@/lib/db';
 import { EventModel } from '@/models/Event';
 import { UserModel } from '@/models/User';
+import { safeAuth } from '@/lib/safe-auth';
 import type { SessionUser, UserRole } from '@/types/domain';
 import mongoose from 'mongoose';
 
@@ -17,7 +17,7 @@ export function isValidObjectId(value: string): boolean {
 }
 
 export async function getSessionUser(requiredRole?: UserRole): Promise<SessionUser> {
-  const session = await auth();
+  const session = await safeAuth();
 
   if (!session?.user?.id) {
     throw new AuthorizationError('Please log in to continue.');
