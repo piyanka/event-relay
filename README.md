@@ -68,13 +68,23 @@ An event platform for hosts and attendees. Hosts can create and manage events, w
    - `MONGODB_URI`
    - `NEXTAUTH_SECRET`
    - `NEXTAUTH_URL`
+   - `AUTH_URL`
+   - `AUTH_SECRET`
 4. Set `NEXTAUTH_URL` to the production URL after Vercel creates it, for example:
 
    ```bash
    https://your-project.vercel.app
    ```
+5. AUTH_URL and NEXTAUTH_URL should point to the same application URL.
+   Example:
+   AUTH_URL=https://event-relay-five.vercel.app
+   NEXTAUTH_URL=https://event-relay-five.vercel.app
 
-5. Redeploy after saving the environment variables.
+6. AUTH_SECRET and NEXTAUTH_SECRET should contain the same secret value if both are defined.
+   Example:
+   AUTH_SECRET=your-long-random-secret
+   NEXTAUTH_SECRET=your-long-random-secret 
+7. Redeploy after saving the environment variables.
 
 ## Notes
 
