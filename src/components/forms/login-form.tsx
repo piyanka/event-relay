@@ -30,7 +30,7 @@ export function LoginForm(): ReactTypes.JSX.Element {
       email,
       password,
       redirect: false,
-      callbackUrl: searchParams.get('callbackUrl') ?? '/post-login',
+      callbackUrl: searchParams.get('callbackUrl') ?? '/',
     });
 
     setPending(false);
@@ -46,7 +46,7 @@ export function LoginForm(): ReactTypes.JSX.Element {
       variant: 'default',
     });
 
-    router.push('/post-login');
+    router.push(result?.url ?? searchParams.get('callbackUrl') ?? '/');
     router.refresh();
   }
 
