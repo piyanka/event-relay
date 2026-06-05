@@ -1,6 +1,22 @@
 # Event Registration & Management System
 
-Production-ready Next.js 15 app for hosts and attendees.
+An event platform for hosts and attendees. Hosts can create and manage events, while attendees can browse public events, register, and manage their own registrations.
+
+## Implementation Summary
+
+- Built with Next.js 15 App Router, React 19, and TypeScript.
+- Uses MongoDB Atlas with Mongoose for event, user, and registration data.
+- Uses NextAuth credentials login for secure host and attendee authentication.
+- Protects dashboard and attendee pages with server-side role checks.
+- Supports event creation, public event browsing, registration, cancellation, and CSV export.
+
+## Approach
+
+- Keep the public side simple so visitors can quickly discover active events.
+- Keep the host side separate so only authenticated hosts can manage their own events.
+- Store sensitive data safely by hashing passwords with bcrypt before saving.
+- Enforce authorization on the server instead of relying only on the UI.
+- Use reusable UI components and server-rendered pages for a clean, fast experience.
 
 ## Stack
 
@@ -15,30 +31,30 @@ Production-ready Next.js 15 app for hosts and attendees.
 
 ## Roles
 
-- **Host**: sign up, log in, create events, manage registrations, export CSV
-- **Attendee**: register for public events, create an account during registration, log in, view and cancel registrations
+- **Host**: sign up, log in, create events, manage registrations, export CSV.
+- **Attendee**: register for public events, create an account during registration, log in, view and cancel registrations.
 
-## Setup
+## Local Setup
 
-1. Install dependencies
+1. Install dependencies:
 
    ```bash
    npm install
    ```
 
-2. Copy environment variables
+2. Copy the environment file:
 
    ```bash
    cp .env.example .env.local
    ```
 
-3. Set values for:
+3. Set these values in `.env.local`:
 
    - `MONGODB_URI`
    - `NEXTAUTH_SECRET`
    - `NEXTAUTH_URL`
 
-4. Start the app
+4. Start the app:
 
    ```bash
    npm run dev
@@ -46,19 +62,28 @@ Production-ready Next.js 15 app for hosts and attendees.
 
 ## Deployment on Vercel
 
-1. Push the repository to GitHub.
-2. Import the project into Vercel.
-3. Add the environment variables above in the Vercel dashboard.
-4. Ensure `NEXTAUTH_URL` matches your production domain.
-5. Deploy.
+1. Push the latest code to GitHub.
+2. Import the repository into Vercel.
+3. Add these environment variables in the Vercel dashboard:
+   - `MONGODB_URI`
+   - `NEXTAUTH_SECRET`
+   - `NEXTAUTH_URL`
+4. Set `NEXTAUTH_URL` to the production URL after Vercel creates it, for example:
+
+   ```bash
+   https://your-project.vercel.app
+   ```
+
+5. Redeploy after saving the environment variables.
 
 ## Notes
 
 - Passwords are hashed with bcrypt before storing.
 - Passwords are never shown in dashboards or exports.
 - All authorization checks are enforced server-side.
+- The app is designed to build cleanly on Vercel without external font downloads.
 
-## Demo seed for local testing only
+## Demo Seed
 
 You can load sample data into MongoDB for local testing with:
 
@@ -66,4 +91,4 @@ You can load sample data into MongoDB for local testing with:
 SEED_DEMO_CONFIRM=YES npm run seed:demo
 ```
 
-This seed is intentionally idempotent and meant for test data only. It creates a demo host, demo attendees, sample events, and sample registrations.
+This seed is idempotent and intended only for test data. It creates a demo host, demo attendees, sample events, and sample registrations.
