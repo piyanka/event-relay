@@ -32,7 +32,7 @@ export default async function MyEventsPage(): Promise<React.JSX.Element> {
           </p>
         </div>
         <Button asChild variant="outline">
-          <Link href="/">Browse more events</Link>
+          <Link href="/events">Browse more events</Link>
         </Button>
       </div>
 
@@ -41,7 +41,7 @@ export default async function MyEventsPage(): Promise<React.JSX.Element> {
           <EmptyState
             title="No registrations yet"
             description="Explore public events and register for one to see it here."
-            action={{ label: 'Browse public events', href: '/' }}
+            action={{ label: 'Browse public events', href: '/events' }}
           />
         ) : (
           <div className="grid gap-6 xl:grid-cols-2">

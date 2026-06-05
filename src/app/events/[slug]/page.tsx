@@ -60,7 +60,7 @@ export default async function EventPage({
             <div className="mt-8">
               <div className="flex flex-wrap gap-3">
                 <Button asChild variant="outline">
-                  <Link href="/">Back to events</Link>
+                  <Link href="/events">Back to events</Link>
                 </Button>
                 <ShareLinkButton path={`/events/${event.slug}`} label="Share event" />
               </div>
